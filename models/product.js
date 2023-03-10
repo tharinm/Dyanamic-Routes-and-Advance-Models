@@ -1,13 +1,13 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const p = path.join(
   path.dirname(process.mainModule.filename),
-  'data',
-  'products.json'
+  "data",
+  "products.json"
 );
 
-const getProductsFromFile = cb => {
+const getProductsFromFile = (cb) => {
   fs.readFile(p, (err, fileContent) => {
     if (err) {
       cb([]);
@@ -37,7 +37,17 @@ module.exports = class Product {
     });
   }
 
+  //Get all prouct from data
   static fetchAll(cb) {
     getProductsFromFile(cb);
   }
+
+  //Search Products
+  static findByID(id,cb) {
+    getProductsFromFile(products => {
+      const product = products.find(p => p.id === id);
+      cb(product);
+    })
+  }
 };
+

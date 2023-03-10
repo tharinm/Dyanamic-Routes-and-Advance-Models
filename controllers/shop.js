@@ -13,8 +13,9 @@ exports.getProducts = (req, res, next) => {
 exports.getProduct= (req, res, next) => {
   //!productID parameter passed from controller 
   const prodId = req.params.productId;
-  console.log(prodId);
-  res.redirect('/')
+  Product.findByID(prodId, product => {
+   console.log(product)
+  })
 }
 
 exports.getIndex = (req, res, next) => {
