@@ -7,6 +7,7 @@ const p = path.join(
   "products.json"
 );
 
+//!JSON parse for read and get out put from the jsonfile
 const getProductsFromFile = (cb) => {
   fs.readFile(p, (err, fileContent) => {
     if (err) {
@@ -43,11 +44,10 @@ module.exports = class Product {
   }
 
   //Search Products
-  static findByID(id,cb) {
-    getProductsFromFile(products => {
-      const product = products.find(p => p.id === id);
+  static findByID(id, cb) {
+    getProductsFromFile((products) => {
+      const product = products.find((p) => p.id === id);
       cb(product);
-    })
+    });
   }
 };
-
